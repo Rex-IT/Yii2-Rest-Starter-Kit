@@ -1,0 +1,62 @@
+{
+    "name": "Rex-IT/Yii2-Rest-Starter-Kit",
+    "description": "Yii 2 Rest application skeleton.",
+    "keywords": ["yii2", "framework", "rest", "api"],
+    "homepage": "http://rexit.info/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Rex IT team",
+            "email": "rexit.web@gmail.com",
+            "homepage": "http://rexit.info",
+            "role": "Developers"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Rex-IT/Yii2-Rest-Starter-Kit/issues",
+        "wiki": "https://github.com/Rex-IT/Yii2-Rest-Starter-Kit/wiki",
+        "source": "https://github.com/Rex-IT/Yii2-Rest-Starter-Kit"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.5",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*"
+    },
+    "require-dev": {
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*",
+        "codeception/specify": "~0.4.3"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
