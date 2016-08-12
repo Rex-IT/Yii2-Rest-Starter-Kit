@@ -9,6 +9,8 @@ nbproject
 .project
 .settings
 
+.env
+
 # windows thumbnail cache
 Thumbs.db
 
@@ -17,6 +19,9 @@ Thumbs.db
 
 # composer itself is not needed
 composer.phar
+
+# remove in production
+composer.lock
 
 # Mac DS_Store Files
 .DS_Store

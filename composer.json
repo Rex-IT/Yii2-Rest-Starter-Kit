@@ -23,7 +23,8 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.5",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "yiisoft/yii2-swiftmailer": "*",
+        "vlucas/phpdotenv": "^2.3"
     },
     "require-dev": {
         "codeception/base": "^2.2.3",
