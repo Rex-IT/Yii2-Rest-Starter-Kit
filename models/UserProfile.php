@@ -19,6 +19,9 @@ use Yii;
  */
 class UserProfile extends \yii\db\ActiveRecord
 {
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 2;
+
     /**
      * @inheritdoc
      */
@@ -33,6 +36,7 @@ class UserProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
             [['gender'], 'integer'],
             [['first_name', 'middle_name', 'last_name', 'avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

@@ -81,6 +81,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username', 'auth_key'], 'string', 'max' => 32],
             [['access_token'], 'string', 'max' => 40],
             [['password_hash', 'oauth_client', 'oauth_client_user_id', 'email'], 'string', 'max' => 255],
+            [['username', 'email'], 'unique'],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => array_keys(self::statuses())],
+            [['username'], 'filter', 'filter' => '\yii\helpers\Html::encode']
         ];
     }
 
