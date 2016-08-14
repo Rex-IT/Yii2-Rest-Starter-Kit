@@ -32,6 +32,7 @@ class AppController extends Controller
         $this->runAction('set-executable', ['interactive' => $this->interactive]);
         $this->runAction('set-keys', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('migrate/up', ['interactive' => $this->interactive]);
+        \Yii::$app->runAction('user/sign-up', ['interactive' => $this->interactive]);
     }
 
     public function actionSetWritable()
