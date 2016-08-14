@@ -11,6 +11,7 @@ $config = [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
+                /** @var \yii\web\Response $response */
                 if ($response->data !== null) {
                     $response->data = [
                         'success' => $response->isSuccessful,

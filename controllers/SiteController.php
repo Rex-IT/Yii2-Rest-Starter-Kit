@@ -13,11 +13,11 @@ use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
-
     public function actionIndex()
     {
-        throw new NotFoundHttpException();
+        return [
+            'message'=>'none'
+        ];
     }
-
 
 }

@@ -1,6 +1,7 @@
 <?php
 namespace app\components;
 use Yii;
+use yii\filters\ContentNegotiator;
 use yii\web\ErrorHandler;
 use yii\web\Response;
 
@@ -16,6 +17,14 @@ class ApiErrorHandler extends ErrorHandler
 
     protected function renderException($exception)
     {
+        $net = new ContentNegotiator([
+            'formats' => [
+                'application/json' => Response::FORMAT_JSON,
+                'application/xml' => Response::FORMAT_XML,
+            ]
+        ]);
+        $net->negotiate();
+
         if (Yii::$app->has('response')) {
             $response = Yii::$app->getResponse();
         } else {
