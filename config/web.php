@@ -6,13 +6,23 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\Module',
+            'modules' => [
+                'v1' => [
+                    'class' => 'app\modules\api\v1\Module',
+                ],
+            ],
+        ],
+    ],
     'components' => [
         'response' => [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
                 /** @var \yii\web\Response $response */
-                if ($response->data !== null) {
+                if (Yii::$app->response->format != 'html' && $response->data !== null) {
                     $response->data = [
                         'success' => $response->isSuccessful,
                         'data' => $response->data,
@@ -24,6 +34,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => env('COOKIE_VALIDATION_KEY'),
+            'enableCookieValidation' => false,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
