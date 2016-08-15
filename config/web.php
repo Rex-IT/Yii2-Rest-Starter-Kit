@@ -1,11 +1,16 @@
 <?php
 
-$params = require(__DIR__ . '/params.php');
+use yii\filters\ContentNegotiator;
+use yii\web\Response;
 
+$params = require(__DIR__ . '/params.php');
+$routes = require(__DIR__. '/routes.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+    ],
     'modules' => [
         'api' => [
             'class' => 'app\modules\api\Module',
@@ -21,6 +26,7 @@ $config = [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
+
                 /** @var \yii\web\Response $response */
                 if (Yii::$app->response->format != 'html' && $response->data !== null) {
                     $response->data = [
@@ -43,9 +49,7 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
-        'errorHandler' => [
-            'class' => 'app\components\ApiErrorHandler',
-        ],
+
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
@@ -67,8 +71,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => $routes,
         ],
 
     ],
@@ -85,6 +88,11 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'generators' => [
+            'crud' => ['class' => 'mdm\gii\generators\crud\Generator'],
+            'mvc' => ['class' => 'mdm\gii\generators\mvc\Generator'],
+            'migration' => ['class' => 'mdm\gii\generators\migration\Generator'],
+        ]
     ];
 }
 
