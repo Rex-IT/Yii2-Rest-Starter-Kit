@@ -18,7 +18,6 @@
         "wiki": "https://github.com/Rex-IT/Yii2-Rest-Starter-Kit/wiki",
         "source": "https://github.com/Rex-IT/Yii2-Rest-Starter-Kit"
     },
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.5",
